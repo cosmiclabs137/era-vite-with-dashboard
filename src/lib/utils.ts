@@ -1,4 +1,3 @@
-// import { Deal, Proposal } from "@/lib/definitions";
 import { Deal, Proposal } from "@/lib/definitions";
 
 export const proposalFactory = (id: string): Proposal => ({

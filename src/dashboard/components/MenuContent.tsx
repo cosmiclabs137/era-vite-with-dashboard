@@ -12,8 +12,10 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
+import { capitalize } from "@mui/material";
 
 import Link from "@/components/common/Link";
+import useLastPartOfPathname from "@/hooks/useLastPartOfPathname";
 
 const mainListItems = [
   { text: "Home", icon: <HomeRoundedIcon />, path: "" },
@@ -29,12 +31,13 @@ const secondaryListItems = [
 ];
 
 export default function MenuContent() {
+  const pathname = capitalize(useLastPartOfPathname());
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
       <List dense>
         {mainListItems.map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: "block" }}>
-            <ListItemButton selected={index === 0}>
+            <ListItemButton selected={item.text === pathname}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <Link
                 to={item.path}
