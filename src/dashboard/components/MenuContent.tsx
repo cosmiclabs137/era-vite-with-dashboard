@@ -8,14 +8,13 @@ import Stack from "@mui/material/Stack";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
-// import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
 import { capitalize } from "@mui/material";
 
 import Link from "@/components/common/Link";
-import useLastPartOfPathname from "@/hooks/useLastPartOfPathname";
+import useLastPartsOfPathname from "@/hooks/useLastPartsOfPathname";
 
 const mainListItems = [
   { text: "Home", icon: <HomeRoundedIcon />, path: "" },
@@ -31,7 +30,10 @@ const secondaryListItems = [
 ];
 
 export default function MenuContent() {
-  const pathname = capitalize(useLastPartOfPathname());
+  const pathnames = useLastPartsOfPathname();
+  let pathname = pathnames[pathnames.length - 1];
+  pathname = pathname ? capitalize(pathname) : pathname;
+
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
       <List dense>
