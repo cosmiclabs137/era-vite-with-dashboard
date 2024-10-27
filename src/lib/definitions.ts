@@ -21,6 +21,7 @@ export type Proposal = {
 };
 
 export type Deal = {
+  name: string;
   id: string;
   proposals: Proposal[];
 };

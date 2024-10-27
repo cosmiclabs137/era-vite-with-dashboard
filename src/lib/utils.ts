@@ -22,4 +22,8 @@ export const proposalFactory = (id: string): Proposal => ({
   landlordDiscountRate: 5,
 });
 
-export const dealFactory = (id: string): Deal => ({ id: id, proposals: [] });
+export const dealFactory = (id: string): Deal => ({
+  id: id,
+  name: `Deal ${id}`,
+  proposals: [],
+});
