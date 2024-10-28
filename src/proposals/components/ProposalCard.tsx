@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Proposal } from "@/lib/definitions";
+import { Proposal } from "@/deals/lib/definitions";
 
 const ProposalCard = ({ proposal }: { proposal: Proposal }) => {
   return (

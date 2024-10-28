@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid2";
 import { useLoaderData } from "react-router";
 
 import DealHeader from "./DealHeader";
-import ProposalCard from "@/proposals/ProposalCard";
+import ProposalCard from "@/proposals/components/ProposalCard";
 import { Deal, Proposal } from "@/deals/lib/definitions";
 
 const DealView = () => {
@@ -13,6 +13,7 @@ const DealView = () => {
   const href = `/dashboard/deals/${deal.id}/edit`;
   const link = { href: href, text: "Edit" };
 
+  // NOTE: exits too early! no header if we exit like this
   if (!hasProposals) {
     return <Typography>No proposals yet. Create a one!</Typography>;
   }

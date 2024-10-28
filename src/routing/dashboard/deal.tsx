@@ -1,9 +1,9 @@
 import { RouteObject } from "react-router";
 
-import DealIndex from "@/components/Deals/DealIndex";
-import DealView from "@/components/Deals/DealView";
-import DealsWrapper from "@/components/Deals/DealsWrapper";
-import { getDealById, getDeals } from "@/lib/deals";
+import DealIndex from "@/deals/components/DealIndex";
+import DealView from "@/deals/components/DealView";
+import DealsWrapper from "@/deals/components/DealsWrapper";
+import { getDealById, getDeals } from "@/deals/lib/deals";
 
 export const routes: RouteObject[] = [
   {

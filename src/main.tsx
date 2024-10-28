@@ -5,10 +5,10 @@ import { CssBaseline } from "@mui/material";
 import { Provider as ReduxProvider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 
-import { store } from "./store";
-import theme from "./theme";
+import { store } from "@/deals/store";
+import theme from "@/theme";
 
-import { router } from "./router";
+import { router } from "@/routing/router";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
