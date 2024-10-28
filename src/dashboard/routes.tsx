@@ -1,14 +1,18 @@
 import { RouteObject } from "react-router";
 
 import Dashboard from "@/dashboard/Dashboard";
-import ErrorPage from "@/error";
+import MainGrid from "@/dashboard/components/MainGrid";
 
-import { routes as dealRoutes } from "@/routing/dashboard/deal";
-import { routes as homeRoutes } from "@/routing/dashboard/home";
+import ErrorPage from "@/error";
 
 export const routes: RouteObject = {
   path: "/dashboard",
   element: <Dashboard />,
   errorElement: <ErrorPage />,
-  children: [homeRoutes, ...dealRoutes],
+  children: [
+    {
+      path: "",
+      element: <MainGrid />,
+    },
+  ],
 };
