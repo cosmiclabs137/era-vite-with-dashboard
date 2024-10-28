@@ -1,42 +1,36 @@
-// import React from "react";
-// import { Box, Divider, Stack, Typography } from "@mui/material";
-// import Grid from "@mui/material/Grid2";
-// import { useLoaderData } from "react-router";
+import React from "react";
+import { Box, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
+import { useLoaderData } from "react-router";
 
-// import ProposalsInputsWrapper from "@/components/Proposals/ProposalsInputsWrapper";
-// import Link from "@/components/common/Link";
-// import { Deal } from "@/lib/definitions";
+import DealHeader from "./DealHeader";
+import ProposalCard from "@/proposals/components/ProposalCard";
+import { Deal, Proposal } from "@/deals/lib/definitions";
 
-// const DealHeader = ({ deal }: { deal: Deal }) => {
-//   return (
-//     <Stack
-//       direction="row"
-//       spacing={2}
-//       sx={{ mb: 2, flexWrap: "wrap", alignItems: "flex-end" }}
-//       useFlexGap
-//     >
-//       <Typography variant="h2">{deal.name}</Typography>
-//       <Typography>
-//         <Link to={`/dashboard/deals/${deal.id}`}>Back</Link>
-//       </Typography>
-//     </Stack>
-//   );
-// };
+const DealView = () => {
+  const deal = useLoaderData() as Deal;
+  const hasProposals = deal.proposals.length > 0;
+  const href = `/dashboard/deals/${deal.id}`;
+  const link = { href: href, text: "Back" };
 
-// const DealEdit = () => {
-//   const deal = useLoaderData() as Deal;
-//   return (
-//     <div style={{ width: "100%" }}>
-//       <DealHeader deal={deal} />
-//       <Divider />
-//       <Grid container spacing={{ xs: 2, md: 3 }}>
-//         <Typography variant="h4">Proposals:</Typography>
-//         <Grid container sx={{ flexGrow: 0, mt: 5 }}>
-//           <ProposalsInputsWrapper proposals={deal.proposals} />
-//         </Grid>
-//       </Grid>
-//     </div>
-//   );
-// };
+  const mainElem = !hasProposals ? (
+    <Typography>No proposals yet. Create a one!</Typography>
+  ) : (
+    <Grid container spacing={{ xs: 2, md: 3 }}>
+      {deal.proposals.map((proposal: Proposal) => (
+        <ProposalCard proposal={proposal} key={proposal?.id} />
+      ))}
+    </Grid>
+  );
 
-// export default DealEdit;
+  return (
+    <>
+      <DealHeader link={link} title={deal.name} />
+
+      <Typography variant="h4">Proposals:</Typography>
+      <Box sx={{ flexGrow: 0, mt: 5 }}>{mainElem}</Box>
+    </>
+  );
+};
+
+export default DealView;
