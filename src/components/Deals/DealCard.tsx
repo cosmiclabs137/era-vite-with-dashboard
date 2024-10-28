@@ -1,6 +1,4 @@
-import React from "react";
 import {
-  Box,
   Card,
   CardActions,
   CardContent,
@@ -8,11 +6,6 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
-import { useLoaderData, Outlet } from "react-router";
-
-import AppHeader from "@/components/App/AppHeader";
-import AppWrapper from "@/components/App/AppWrapper";
 
 import { Deal } from "@/lib/definitions";
 import ButtonLink from "@/components/common/ButtonLink";
@@ -43,32 +36,4 @@ const DealCard = ({ deal }: { deal: Deal }) => {
   );
 };
 
-// const DealsWrapper = () => {
-//   const deals: Deal[] = useLoaderData() as Deal[];
-//   return (
-//     <div style={{ width: "100%" }}>
-//       <Typography variant="h2">Deals</Typography>
-//       <Box sx={{ flexGrow: 0, mt: 5 }}>
-//         <Grid container spacing={{ xs: 2, md: 3 }}>
-//           {deals.map((deal: Deal) => (
-//             <Grid key={deal.id}>
-//               <DealCard deal={deal} key={deal.id} />
-//             </Grid>
-//           ))}
-//         </Grid>
-//       </Box>
-//     </div>
-//   );
-// };
-
-const DealsWrapper = () => {
-  return (
-    <AppWrapper>
-      <Box sx={{ flexGrow: 0 }}>
-        <Outlet />
-      </Box>
-    </AppWrapper>
-  );
-};
-
-export default DealsWrapper;
+export default DealCard;
