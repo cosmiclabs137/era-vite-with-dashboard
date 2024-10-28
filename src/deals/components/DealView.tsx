@@ -13,23 +13,22 @@ const DealView = () => {
   const href = `/dashboard/deals/${deal.id}/edit`;
   const link = { href: href, text: "Edit" };
 
-  // NOTE: exits too early! no header if we exit like this
-  if (!hasProposals) {
-    return <Typography>No proposals yet. Create a one!</Typography>;
-  }
+  const mainElem = !hasProposals ? (
+    <Typography>No proposals yet. Create a one!</Typography>
+  ) : (
+    <Grid container spacing={{ xs: 2, md: 3 }}>
+      {deal.proposals.map((proposal: Proposal) => (
+        <ProposalCard proposal={proposal} key={proposal?.id} />
+      ))}
+    </Grid>
+  );
 
   return (
     <>
       <DealHeader link={link} title={deal.name} />
 
       <Typography variant="h4">Proposals:</Typography>
-      <Box sx={{ flexGrow: 0, mt: 5 }}>
-        <Grid container spacing={{ xs: 2, md: 3 }}>
-          {deal.proposals.map((proposal: Proposal) => (
-            <ProposalCard proposal={proposal} key={proposal?.id} />
-          ))}
-        </Grid>
-      </Box>
+      <Box sx={{ flexGrow: 0, mt: 5 }}>{mainElem}</Box>
     </>
   );
 };
