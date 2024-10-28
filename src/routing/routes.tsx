@@ -1,6 +1,5 @@
 import { RouteObject } from "react-router";
 
-// dashboard routes, then make the other routes children of the dashboard
 import { routes as dashboardRoutes } from "@/dashboard/routes";
 import { routes as dealsRoutes } from "@/deals/routes";
 
