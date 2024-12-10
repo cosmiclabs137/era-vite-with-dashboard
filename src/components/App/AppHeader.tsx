@@ -38,7 +38,6 @@ const AppHeaderLink = (props: AppHeaderLinkProps) => {
 
   if (!(href && text)) return null;
 
-  console.log(props);
   return (
     <Typography>
       <Link to={href}>{text}</Link>
