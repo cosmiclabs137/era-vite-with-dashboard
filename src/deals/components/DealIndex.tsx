@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid2";
 import IconButton from "@mui/material/IconButton";
 import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
-import { useLoaderData, Outlet } from "react-router";
+import { useLoaderData, useNavigate, Outlet } from "react-router";
 
 import { createDeal } from "@/api";
 
@@ -17,6 +17,8 @@ import NewDealModal from "@/deals/components/NewDealModal";
 import { Deal } from "@/deals/lib/definitions";
 
 const DealIndex = () => {
+  const navigate = useNavigate();
+
   const deals: Deal[] = useLoaderData() as Deal[];
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -49,6 +51,9 @@ const DealIndex = () => {
     console.table(newDeal);
     handleModalClose();
     setIsSnackbarOpen(true);
+    if (newDeal) {
+      navigate(`/dashboard/deals/${newDeal.id}`);
+    }
   };
 
   return (
