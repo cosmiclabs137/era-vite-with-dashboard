@@ -11,6 +11,10 @@ import { Deal } from "@/deals/lib/definitions";
 const DealIndex = () => {
   const deals: Deal[] = useLoaderData() as Deal[];
 
+  const handleClick = () => {
+    alert("Created new deal!");
+  };
+
   return (
     <>
       <AppHeader title="Deals" />
@@ -22,7 +26,7 @@ const DealIndex = () => {
         ))}
         <Outlet />
       </Grid>
-      <AddFab />
+      <AddFab onClick={handleClick} />
     </>
   );
 };

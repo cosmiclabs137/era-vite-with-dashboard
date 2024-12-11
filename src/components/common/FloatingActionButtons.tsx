@@ -9,9 +9,10 @@ import { useTheme } from "@mui/material";
 interface BaseFabProps {
   children: ReactNode;
   label: string;
+  onClick?: () => void;
 }
 
-function BaseFab({ children, label }: BaseFabProps) {
+function BaseFab({ children, label, onClick }: BaseFabProps) {
   const theme = useTheme();
 
   return (
@@ -33,6 +34,7 @@ function BaseFab({ children, label }: BaseFabProps) {
             color: theme.palette.grey[800],
           },
         }}
+        onClick={onClick}
       >
         {children}
       </Fab>
@@ -40,17 +42,21 @@ function BaseFab({ children, label }: BaseFabProps) {
   );
 }
 
-export function AddFab() {
+interface FabProps {
+  onClick?: () => void;
+}
+
+export function AddFab({ onClick }: FabProps) {
   return (
-    <BaseFab label="add">
+    <BaseFab label="add" onClick={onClick}>
       <AddIcon />
     </BaseFab>
   );
 }
 
-export function EditFab() {
+export function EditFab({ onClick }: FabProps) {
   return (
-    <BaseFab label="edit">
+    <BaseFab label="edit" onClick={onClick}>
       <EditIcon />
     </BaseFab>
   );
