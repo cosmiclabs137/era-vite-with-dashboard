@@ -24,6 +24,7 @@
     "dayjs": "^1.11.13",
     "react": "latest",
     "react-dom": "latest",
+    "react-hook-form": "^7.54.0",
     "react-redux": "^9.1.2",
     "react-router": "^6.27.0",
     "react-router-dom": "^6.27.0",
@@ -31,7 +32,7 @@
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {
-    "@types/react": "latest",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
     "typescript": "latest",
