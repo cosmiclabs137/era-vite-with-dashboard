@@ -1,18 +1,54 @@
+import React, { useState } from "react";
+
+import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid2";
+import IconButton from "@mui/material/IconButton";
+import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
 import { useLoaderData, Outlet } from "react-router";
+
+import { createDeal } from "@/api";
 
 import AppHeader from "@/components/App/AppHeader";
 import { AddFab } from "@/components/common/FloatingActionButtons";
 
 import DealCard from "@/deals/components/DealCard";
+import NewDealModal from "@/deals/components/NewDealModal";
 
 import { Deal } from "@/deals/lib/definitions";
 
 const DealIndex = () => {
   const deals: Deal[] = useLoaderData() as Deal[];
 
-  const handleClick = () => {
-    alert("Created new deal!");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false);
+  const [snackbarMessage, setSnackbarMessage] = useState<string>("");
+
+  const handleModalOpen = () => setIsModalOpen(true);
+  const handleModalClose = () => setIsModalOpen(false);
+
+  const handleSnackbarClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setIsSnackbarOpen(false);
+  };
+
+  const handleSubmit = async (value: { name: string }) => {
+    const { name } = value;
+    console.log(name);
+    const newDeal: Deal = await createDeal(name);
+    const message: string =
+      newDeal !== null
+        ? `New deal '${newDeal.name}' created!`
+        : "Deal creation failed";
+    setSnackbarMessage(message);
+    console.table(newDeal);
+    handleModalClose();
+    setIsSnackbarOpen(true);
   };
 
   return (
@@ -26,7 +62,28 @@ const DealIndex = () => {
         ))}
         <Outlet />
       </Grid>
-      <AddFab onClick={handleClick} />
+      <AddFab onClick={handleModalOpen} />
+      <NewDealModal
+        open={isModalOpen}
+        onClose={handleModalClose}
+        handleSubmit={handleSubmit}
+      />
+      <Snackbar
+        open={isSnackbarOpen}
+        autoHideDuration={5000}
+        message={snackbarMessage}
+        action={
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="primary"
+            onClick={handleSnackbarClose}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        }
+        onClose={handleSnackbarClose}
+      />
     </>
   );
 };
