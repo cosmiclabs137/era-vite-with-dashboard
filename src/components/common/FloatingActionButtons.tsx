@@ -6,9 +6,6 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import { useTheme } from "@mui/material";
 
-// Define the valid color types for the Fab component
-type FabColor = "dark" | "light";
-
 interface BaseFabProps {
   children: ReactNode;
   label: string;
@@ -17,10 +14,6 @@ interface BaseFabProps {
 function BaseFab({ children, label }: BaseFabProps) {
   const theme = useTheme();
 
-  const fabColor =
-    theme.palette.mode === "dark"
-      ? theme.palette.primary.main
-      : theme.palette.primary.dark;
   return (
     <Box
       sx={{
