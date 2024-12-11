@@ -12,9 +12,9 @@ const DealIndex = () => {
   return (
     <>
       <AppHeader title="Deals" />
-      <Grid container spacing={{ xs: 2, md: 3 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 3 }}>
         {deals.map((deal: Deal) => (
-          <Grid key={deal.id}>
+          <Grid key={deal.id} size={1}>
             <DealCard deal={deal} key={deal.id} />
           </Grid>
         ))}
