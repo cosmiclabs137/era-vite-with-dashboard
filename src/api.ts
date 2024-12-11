@@ -7,10 +7,10 @@ interface DealResponse {
   proposalIds: string[];
 }
 
-const base_url = "http://localhost:3030";
+const baseUrl = "http://localhost:3030";
 
 export const getDealById = async (dealId: string): Promise<Deal> => {
-  const deal = await fetch(`${base_url}/deals/${dealId}`)
+  const deal = await fetch(`${baseUrl}/deals/${dealId}`)
     .then((response) => response.json())
     .catch((error) => {
       console.error(error);
@@ -23,7 +23,7 @@ export const getDealById = async (dealId: string): Promise<Deal> => {
 };
 
 export const getDeals = async (): Promise<Deal[]> => {
-  const deals: DealResponse[] = await fetch(`${base_url}/deals`)
+  const deals: DealResponse[] = await fetch(`${baseUrl}/deals`)
     .then((response) => response.json())
     .catch((err) => {
       console.error(err);
@@ -41,7 +41,7 @@ export const getDeals = async (): Promise<Deal[]> => {
 };
 
 export const getProposalById = async (propId: string): Promise<Proposal[]> => {
-  const proposal = await fetch(`${base_url}/proposals/${propId}`)
+  const proposal = await fetch(`${baseUrl}/proposals/${propId}`)
     .then((response) => response.json())
     .catch((error) => {
       console.error(error);
@@ -53,7 +53,7 @@ export const getProposalById = async (propId: string): Promise<Proposal[]> => {
 
 const getProposalsByIds = async (ids: any) => {
   const idsSet = new Set(ids);
-  const proposals = await fetch(`${base_url}/proposals`)
+  const proposals = await fetch(`${baseUrl}/proposals`)
     .then((response) => response.json())
     .catch((error) => {
       console.error(error);
