@@ -45,6 +45,7 @@ const NewDealForm: React.FC<{ onSubmit: (data: DealFormValues) => void }> = ({
             helperText={errors.name?.message}
             placeholder="Enter a deal name"
             {...register("name")}
+            focused
             fullWidth
           />
         )}
