@@ -4,7 +4,7 @@ import { useLoaderData, Outlet } from "react-router";
 import AppHeader from "@/components/App/AppHeader";
 import { AddFab } from "@/components/common/FloatingActionButtons";
 
-import DealCard from "./DealCard";
+import DealCard from "@/deals/components/DealCard";
 
 import { Deal } from "@/deals/lib/definitions";
 
