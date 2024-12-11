@@ -13,11 +13,13 @@ const DealView = () => {
   const href = `/dashboard/deals/${deal.id}/edit`;
   const link = { href: href, text: "Edit" };
 
+  console.log(deal.proposals);
+
   const mainElem = !hasProposals ? (
     <Typography>No proposals yet. Create a one!</Typography>
   ) : (
     <Grid container spacing={{ xs: 2, md: 3 }}>
-      {deal.proposals.map((proposal: Proposal) => (
+      {deal?.proposals.map((proposal: Proposal) => (
         <ProposalCard proposal={proposal} key={proposal?.id} />
       ))}
     </Grid>

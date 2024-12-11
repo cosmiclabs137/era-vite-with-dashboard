@@ -1,11 +1,15 @@
+import { getDealById as apiGetDealById, getDeals as apiGetDeals } from "@/api";
+
 import { Deal } from "@/deals/lib/definitions";
-import { deals } from "@/deals/lib/placeholder-data";
+
+import { dealFactory } from "@/deals/lib/utils";
 
 export const getDealById = async (dealId: string): Promise<Deal> => {
-  const deal: Deal = deals.filter((deal) => deal.id === dealId)[0];
+  const deal = await apiGetDealById(dealId);
+
   return deal;
 };
 
-export const getDeals = async (): Promise<Deal[]> => {
-  return deals;
-};
+export const getDeals = async (): Promise<Deal[]> => await apiGetDeals();
+
+export const createDeal = async (): Promise<Deal> => dealFactory();

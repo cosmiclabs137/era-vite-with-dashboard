@@ -12,6 +12,7 @@ import ButtonLink from "@/components/common/ButtonLink";
 
 const DealCard = ({ deal }: { deal: Deal }) => {
   const href = `/dashboard/deals/${deal.id}`;
+  console.log(deal);
   return (
     <Paper elevation={3} sx={{ w: "100%" }}>
       <Card sx={{ w: "100%", p: 2 }} variant="outlined">
@@ -24,7 +25,7 @@ const DealCard = ({ deal }: { deal: Deal }) => {
             {deal.name} (ID: {deal.id})
           </Typography>
           <Divider variant="fullWidth" sx={{ m: 1 }} />
-          <Typography>Proposals: {deal.proposals.length}</Typography>
+          <Typography>Proposals: {deal?.proposals.length}</Typography>
         </CardContent>
         <CardActions>
           <ButtonLink href={href} sx={{ mt: 2 }}>

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 import { Deal, Proposal } from "@/deals/lib/definitions";
 
 export const proposalFactory = (id: string): Proposal => ({
@@ -22,8 +24,8 @@ export const proposalFactory = (id: string): Proposal => ({
   landlordDiscountRate: 5,
 });
 
-export const dealFactory = (id: string): Deal => ({
-  id: id,
-  name: `Deal ${id}`,
+export const dealFactory = (): Deal => ({
+  id: uuidv4(),
+  name: `New Deal`,
   proposals: [],
 });
