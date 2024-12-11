@@ -2,6 +2,8 @@ import Grid from "@mui/material/Grid2";
 import { useLoaderData, Outlet } from "react-router";
 
 import AppHeader from "@/components/App/AppHeader";
+import { AddFab } from "@/components/common/FloatingActionButtons";
+
 import DealCard from "./DealCard";
 
 import { Deal } from "@/deals/lib/definitions";
@@ -20,6 +22,7 @@ const DealIndex = () => {
         ))}
         <Outlet />
       </Grid>
+      <AddFab />
     </>
   );
 };
