@@ -21,11 +21,10 @@ const DealCard = ({ deal }: { deal: Deal }) => {
             gutterBottom
             sx={{ color: "text.secondary", fontSize: 14 }}
           >
-            {/* NOTE: maybe make the ID viewable on hover instead? something else? */}
-            {deal.name} (ID: {deal.id})
+            {deal.name}
           </Typography>
           <Divider variant="fullWidth" sx={{ m: 1 }} />
-          <Typography>Proposals: {deal?.proposals.length}</Typography>
+          <Typography>Proposals: {deal.proposals.length}</Typography>
         </CardContent>
         <CardActions>
           <ButtonLink href={href} sx={{ mt: 2 }}>
