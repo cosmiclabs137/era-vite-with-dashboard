@@ -62,3 +62,20 @@ const getProposalsByIds = async (ids: any) => {
 
   return proposals.filter(({ id }: { id: string }) => idsSet.has(id));
 };
+
+export const createDeal = async (name: string): Promise<Deal> => {
+  const newDeal = await fetch(`${baseUrl}/deals`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name: name, proposalIds: [] }),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error(error);
+      return null;
+    });
+
+  return newDeal;
+};
