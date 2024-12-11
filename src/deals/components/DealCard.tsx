@@ -12,7 +12,7 @@ import ButtonLink from "@/components/common/ButtonLink";
 
 const DealCard = ({ deal }: { deal: Deal }) => {
   const href = `/dashboard/deals/${deal.id}`;
-  console.log(deal);
+
   return (
     <Paper elevation={3} sx={{ w: "100%" }}>
       <Card sx={{ w: "100%", p: 2 }} variant="outlined">
