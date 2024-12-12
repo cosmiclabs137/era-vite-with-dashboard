@@ -13,8 +13,6 @@ const DealView = () => {
   const href = `/dashboard/deals/${deal.id}/edit`;
   const link = { href: href, text: "Edit" };
 
-  console.log(deal.proposals);
-
   const mainElem = !hasProposals ? (
     <Typography>No proposals yet. Create a one!</Typography>
   ) : (

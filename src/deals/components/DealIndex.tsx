@@ -41,7 +41,6 @@ const DealIndex = () => {
 
   const handleSubmit = async (value: { name: string }) => {
     const { name } = value;
-    console.log(name);
     const newDeal: Deal = await createDeal(name);
     const message: string =
       newDeal !== null
