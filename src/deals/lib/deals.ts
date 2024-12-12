@@ -26,7 +26,5 @@ export const createDeal = async ({ request }: { request: Request }) => {
 
   const newDeal: Deal = await apiCreateDeal(name);
 
-  console.log();
-
   return newDeal;
 };
