@@ -82,13 +82,14 @@ const ActionButtons: React.FC<{
 };
 
 const DealCard = ({ deal }: { deal: Deal }) => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const href = `/dashboard/deals/${deal.id}`;
 
   const handleConfirmation = async () => {
     await deleteDeal(deal);
-    navigate(0); // refresh the page
+    navigate(location.pathname);
   };
 
   return (
