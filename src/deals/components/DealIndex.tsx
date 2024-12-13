@@ -47,7 +47,6 @@ const DealIndex = () => {
         ? `New deal '${newDeal.name}' created!`
         : "Deal creation failed";
     setSnackbarMessage(message);
-    console.table(newDeal);
     handleModalClose();
     setIsSnackbarOpen(true);
     if (newDeal) {
