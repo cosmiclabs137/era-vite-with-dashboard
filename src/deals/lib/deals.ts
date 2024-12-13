@@ -4,6 +4,7 @@ import {
   getDealById as apiGetDealById,
   getDeals as apiGetDeals,
   createDeal as apiCreateDeal,
+  deleteDeal as apiDeleteDeal,
 } from "@/api";
 
 import { Deal } from "@/deals/lib/definitions";
@@ -27,4 +28,10 @@ export const createDeal = async ({ request }: { request: Request }) => {
   const newDeal: Deal = await apiCreateDeal(name);
 
   return newDeal;
+};
+
+export const deleteDeal = async (deal: Deal): Promise<boolean> => {
+  const response = await apiDeleteDeal(deal);
+
+  return response;
 };

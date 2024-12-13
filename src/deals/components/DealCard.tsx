@@ -19,23 +19,24 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
+import { deleteDeal } from "@/deals/lib/deals";
 import { Deal } from "@/deals/lib/definitions";
 import ButtonLink from "@/components/common/ButtonLink";
 
-const ActionButtons: React.FC<{ href: string }> = ({ href }) => {
-  const navigate = useNavigate();
+const ActionButtons: React.FC<{
+  href: string;
+  handleConfirmation: () => void;
+}> = ({ href, handleConfirmation }) => {
   const [alertOpen, setAlertOpen] = React.useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   const handleClick = () => navigate(`${href}/edit`);
 
   const handleDeleteClick = () => {
     setAlertOpen(true);
-  };
-
-  const handleConfirmation = () => {
-    navigate(`${href}/delete`);
   };
 
   return (
@@ -81,7 +82,14 @@ const ActionButtons: React.FC<{ href: string }> = ({ href }) => {
 };
 
 const DealCard = ({ deal }: { deal: Deal }) => {
+  const navigate = useNavigate();
+
   const href = `/dashboard/deals/${deal.id}`;
+
+  const handleConfirmation = async () => {
+    await deleteDeal(deal);
+    navigate(0); // refresh the page
+  };
 
   return (
     <Paper elevation={3} sx={{ w: "100%" }}>
@@ -107,7 +115,10 @@ const DealCard = ({ deal }: { deal: Deal }) => {
             }}
           >
             <ButtonLink href={href}>View Deal</ButtonLink>
-            <ActionButtons href={href} />
+            <ActionButtons
+              href={href}
+              handleConfirmation={handleConfirmation}
+            />
           </Box>
         </CardActions>
       </Card>
