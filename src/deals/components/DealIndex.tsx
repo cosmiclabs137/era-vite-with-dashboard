@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid2";
@@ -7,50 +7,46 @@ import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
 import { useLoaderData, useNavigate, Outlet } from "react-router";
 
 import { createDeal } from "@/api";
-
 import AppHeader from "@/components/App/AppHeader";
 import { AddFab } from "@/components/common/FloatingActionButtons";
-
 import DealCard from "@/deals/components/DealCard";
 import NewDealModal from "@/deals/components/NewDealModal";
-
 import { Deal } from "@/deals/lib/definitions";
 
 const DealIndex = () => {
   const navigate = useNavigate();
-
   const deals: Deal[] = useLoaderData() as Deal[];
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState<boolean>(false);
-  const [snackbarMessage, setSnackbarMessage] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
-  const handleModalOpen = () => setIsModalOpen(true);
-  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalChange = useCallback(
+    (open: boolean) => setIsModalOpen(open),
+    []
+  );
 
-  const handleSnackbarClose = (
-    event: React.SyntheticEvent | Event,
-    reason?: SnackbarCloseReason
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setIsSnackbarOpen(false);
-  };
+  const handleSnackbarClose = useCallback(
+    (event: React.SyntheticEvent | Event, reason?: SnackbarCloseReason) => {
+      if (reason !== "clickaway") setIsSnackbarOpen(false);
+    },
+    []
+  );
 
   const handleSubmit = async (value: { name: string }) => {
-    const { name } = value;
-    const newDeal: Deal = await createDeal(name);
-    const message: string =
-      newDeal !== null
-        ? `New deal '${newDeal.name}' created!`
-        : "Deal creation failed";
-    setSnackbarMessage(message);
-    handleModalClose();
-    setIsSnackbarOpen(true);
-    if (newDeal) {
-      navigate(`/dashboard/deals/${newDeal.id}`);
+    try {
+      const newDeal = await createDeal(value.name);
+      if (newDeal) {
+        setSnackbarMessage(`New deal '${newDeal.name}' created!`);
+        navigate(`/dashboard/deals/${newDeal.id}`);
+      } else {
+        setSnackbarMessage("Deal creation failed");
+      }
+    } catch {
+      setSnackbarMessage("Deal creation failed");
+    } finally {
+      setIsSnackbarOpen(true);
+      handleModalChange(false);
     }
   };
 
@@ -58,17 +54,17 @@ const DealIndex = () => {
     <>
       <AppHeader title="Deals" />
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 3 }}>
-        {deals.map((deal: Deal) => (
+        {deals.map((deal) => (
           <Grid key={deal.id} size={1}>
-            <DealCard deal={deal} key={deal.id} />
+            <DealCard deal={deal} />
           </Grid>
         ))}
         <Outlet />
       </Grid>
-      <AddFab onClick={handleModalOpen} />
+      <AddFab onClick={() => handleModalChange(true)} />
       <NewDealModal
         open={isModalOpen}
-        onClose={handleModalClose}
+        onClose={() => handleModalChange(false)}
         handleSubmit={handleSubmit}
       />
       <Snackbar

@@ -9,29 +9,53 @@ import {
 
 import { Deal } from "@/deals/lib/definitions";
 
-export const getDealById = async (dealId: string): Promise<Deal> => {
-  const deal = await apiGetDealById(dealId);
+class DealService {
+  async getDealById(dealId: string): Promise<Deal | null> {
+    return await apiGetDealById(dealId);
+  }
 
-  return deal;
-};
+  async getDeals(): Promise<Deal[]> {
+    return await apiGetDeals();
+  }
 
-export const getDeals = async (): Promise<Deal[]> => await apiGetDeals();
+  async createDeal(name: string): Promise<Deal> {
+    if (!name.trim()) {
+      throw new Error("Deal name is required");
+    }
+    return await apiCreateDeal(name);
+  }
+
+  async deleteDeal(deal: Deal): Promise<boolean> {
+    return await apiDeleteDeal(deal);
+  }
+}
+
+const dealService = new DealService();
+
+export const getDealById = async (dealId: string): Promise<Deal | null> =>
+  await dealService.getDealById(dealId);
+
+export const getDeals = async (): Promise<Deal[]> =>
+  await dealService.getDeals();
 
 export const createDeal = async ({ request }: { request: Request }) => {
   const formData = await request.formData();
   const name = formData.get("name");
 
-  if (typeof name !== "string" || !name.trim()) {
-    return json({ error: "Deal name is required" }, { status: 400 });
+  if (typeof name !== "string") {
+    return json({ error: "Invalid deal name" }, { status: 400 });
   }
 
-  const newDeal: Deal = await apiCreateDeal(name);
-
-  return newDeal;
+  try {
+    const newDeal = await dealService.createDeal(name);
+    return newDeal;
+  } catch (error: any) {
+    return json(
+      { error: error instanceof Error ? error.message : "Unknown error" },
+      { status: 400 }
+    );
+  }
 };
 
-export const deleteDeal = async (deal: Deal): Promise<boolean> => {
-  const response = await apiDeleteDeal(deal);
-
-  return response;
-};
+export const deleteDeal = async (deal: Deal): Promise<boolean> =>
+  await dealService.deleteDeal(deal);
