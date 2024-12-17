@@ -27,7 +27,7 @@ const ProposalCard = ({ proposal }: { proposal: Proposal }) => {
               </ListItemText>
             </ListItem>
             <ListItem alignItems="flex-start" key="proposal-name">
-              <ListItemText>Proposals: {proposal.name}</ListItemText>
+              <ListItemText>Name: {proposal.name}</ListItemText>
             </ListItem>
           </List>
         </CardContent>
