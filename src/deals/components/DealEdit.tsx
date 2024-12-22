@@ -7,7 +7,7 @@ import DealHeader from "./DealHeader";
 import ProposalEdit from "@/proposals/components/ProposalEdit";
 import { Deal, Proposal } from "@/deals/lib/definitions";
 
-const DealView = () => {
+const DealView: React.FC = () => {
   const deal = useLoaderData() as Deal;
   const hasProposals = deal.proposals.length > 0;
   const href = `/dashboard/deals/${deal.id}`;
