@@ -11,7 +11,11 @@ import {
 
 import { Proposal } from "@/deals/lib/definitions";
 
-const ProposalCard = ({ proposal }: { proposal: Proposal }) => {
+interface ProposalCardProps {
+  proposal: Proposal;
+}
+
+const ProposalCard: React.FC<ProposalCardProps> = ({ proposal }) => {
   return (
     <Paper elevation={3} sx={{ w: "100%" }}>
       <Card sx={{ w: "100%", p: 2 }} variant="outlined">
