@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid2";
 import { useLoaderData } from "react-router";
 
 import DealHeader from "./DealHeader";
-import ProposalCard from "@/proposals/components/ProposalCard";
+import ProposalEdit from "@/proposals/components/ProposalEdit";
 import { Deal, Proposal } from "@/deals/lib/definitions";
 
 const DealView = () => {
@@ -18,7 +18,7 @@ const DealView = () => {
   ) : (
     <Grid container spacing={{ xs: 2, md: 3 }}>
       {deal.proposals.map((proposal: Proposal) => (
-        <ProposalCard proposal={proposal} key={proposal?.id} />
+        <ProposalEdit proposal={proposal} key={proposal?.id} />
       ))}
     </Grid>
   );
