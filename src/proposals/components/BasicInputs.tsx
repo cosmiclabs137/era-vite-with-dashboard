@@ -4,7 +4,7 @@ import CurrencyInput from "@/components/common/CurrencyInput";
 import InputWithTooltip from "@/components/common/InputWithTooltip";
 import PercentageInput from "@/components/common/PercentageInput";
 
-import { Proposal } from "@/deals/lib/definitions";
+import { Proposal } from "@/proposals/lib/definitions";
 
 interface BasicInputsProps {
   proposal: Proposal;

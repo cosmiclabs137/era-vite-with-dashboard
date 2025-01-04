@@ -9,7 +9,7 @@ import ConcessionsInputs from "@/proposals/components/ConcessionsInputs";
 import Collapsible from "@/components/common/Collapisble";
 import OtherInputs from "@/proposals/components/OtherInputs";
 import ProposalFormMenu from "@/proposals/components/ProposalFormMenu";
-import { Proposal } from "@/deals/lib/definitions";
+import { Proposal } from "@/proposals/lib/definitions";
 
 interface ProposalFormProps {
   proposal: Proposal;

@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import CurrencyInput from "@/components/common/CurrencyInput";
 import InputWithTooltip from "@/components/common/InputWithTooltip";
 
-import { Proposal } from "@/deals/lib/definitions";
+import { Proposal } from "@/proposals/lib/definitions";
 
 interface ConcessionsInputsProps {
   proposal: Proposal;
