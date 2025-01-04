@@ -26,12 +26,16 @@ import {
 interface ProposalFormMenuProps {
   disabled: boolean;
   setDisabled: (value: boolean) => void;
+  onClone: () => void;
+  onDelete: () => void;
   onSave: () => void;
 }
 
 const ProposalFormMenu: React.FC<ProposalFormMenuProps> = ({
   disabled,
   setDisabled,
+  onClone,
+  onDelete,
   onSave,
 }) => {
   const popupState = usePopupState({
@@ -62,7 +66,7 @@ const ProposalFormMenu: React.FC<ProposalFormMenuProps> = ({
         </Tooltip>
 
         <Tooltip title="Clone deal">
-          <IconButton onClick={onSave}>
+          <IconButton onClick={onClone}>
             <FileCopyIcon />
           </IconButton>
         </Tooltip>
@@ -87,7 +91,14 @@ const ProposalFormMenu: React.FC<ProposalFormMenuProps> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={popupState.close}>Cancel</Button>
-          <Button onClick={popupState.close} autoFocus sx={{ color: "red" }}>
+          <Button
+            onClick={() => {
+              popupState.close;
+              onDelete();
+            }}
+            autoFocus
+            sx={{ color: "red" }}
+          >
             Delete
           </Button>
         </DialogActions>
