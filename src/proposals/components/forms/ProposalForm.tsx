@@ -44,7 +44,7 @@ const ProposalForm: React.FC<ProposalFormProps> = ({ proposal }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(proposal),
+      body: JSON.stringify(proposalClone),
     });
 
     if (response.ok) {
