@@ -75,15 +75,27 @@ const ProposalForm: React.FC<ProposalFormProps> = ({ proposal }) => {
           summary="Basic Inputs"
           defaultExpanded
         >
-          <BasicInputs proposal={value} onChange={handleChange} />
+          <BasicInputs
+            proposal={value}
+            onChange={handleChange}
+            disabled={disabled}
+          />
         </Collapsible>
 
         <Collapsible id="concessions-input-panel-content" summary="Concessions">
-          <ConcessionsInputs proposal={value} onChange={handleChange} />
+          <ConcessionsInputs
+            proposal={value}
+            onChange={handleChange}
+            disabled={disabled}
+          />
         </Collapsible>
 
         <Collapsible id="other-input-panel-content" summary="Other">
-          <OtherInputs proposal={value} onChange={handleChange} />
+          <OtherInputs
+            proposal={value}
+            onChange={handleChange}
+            disabled={disabled}
+          />
         </Collapsible>
       </Box>
     </Paper>
