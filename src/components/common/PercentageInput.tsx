@@ -3,9 +3,9 @@ import React from "react";
 import InputWithTooltip, {
   InputWithTooltipProps,
 } from "@/components/common/InputWithTooltip";
-import { DollarAdornment } from "@/components/common/Adornments";
+import { PercentageAdornment } from "@/components/common/Adornments";
 
-const CurrencyInput: React.FC<InputWithTooltipProps> = ({
+const PercentageInput: React.FC<InputWithTooltipProps> = ({
   name,
   value,
   onChange,
@@ -38,10 +38,10 @@ const CurrencyInput: React.FC<InputWithTooltipProps> = ({
       onChange={onChange}
       slotProps={slotProps}
       disabled={disabled}
-      startAdornment={<DollarAdornment />}
+      endAdornment={<PercentageAdornment />}
       sx={sx}
     />
   );
 };
 
-export default CurrencyInput;
+export default PercentageInput;

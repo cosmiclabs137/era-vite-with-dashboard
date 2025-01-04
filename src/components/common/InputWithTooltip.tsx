@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormControl, TextField, Tooltip } from "@mui/material";
+import { FormControl, FormLabel, Input, InputLabel, Tooltip } from "@mui/material";
 
 interface SlotProps {
   formHelperText?: Record<string, unknown>;
@@ -17,13 +17,14 @@ export interface InputWithTooltipProps {
   title: string;
   label: string;
   type?: "number" | "text";
-  variant?: "standard" | "filled";
   placement?: "top";
   slotProps?: SlotProps;
   describeChild?: boolean;
   disabled?: boolean;
   sx?: Record<string, string | number>;
   followCursor?: boolean;
+  endAdornment?: React.ReactNode;
+  startAdornment?: React.ReactNode;
 }
 
 const InputWithTooltip: React.FC<InputWithTooltipProps> = ({
@@ -33,35 +34,37 @@ const InputWithTooltip: React.FC<InputWithTooltipProps> = ({
   label,
   title,
   type = "number",
-  variant = "standard",
-  slotProps = { input: { min: 0, step: 0.01 } },
+  slotProps = { htmlInput: { min: 0, step: 0.01 } },
   placement = "top",
-  sx = { paddingTop: 2 },
+  sx = { m: 1 },
   describeChild = true,
+  endAdornment,
+  startAdornment,
   disabled = false,
 }) => {
   return (
-    <Tooltip
-      arrow
-      followCursor
-      title={title}
-      placement={placement}
-      describeChild={describeChild}
-    >
-      <FormControl sx={sx} fullWidth>
-        <TextField
+    <FormControl sx={sx} variant="standard" fullWidth>
+      <InputLabel htmlFor={name}>{label}</InputLabel>
+      <Tooltip
+        arrow
+        followCursor
+        title={title}
+        placement={placement}
+        describeChild={describeChild}
+      >
+        <Input
           name={name}
-          label={label}
           type={type}
-          variant={variant}
           value={value}
           onChange={onChange}
           slotProps={slotProps}
           disabled={disabled}
+          endAdornment={endAdornment}
+          startAdornment={startAdornment}
           sx={sx}
         />
-      </FormControl>
-    </Tooltip>
+      </Tooltip>
+    </FormControl>
   );
 };
 
